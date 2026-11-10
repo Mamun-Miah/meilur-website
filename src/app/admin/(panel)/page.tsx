@@ -44,9 +44,7 @@ export default async function Dashboard({ searchParams }: { searchParams: Promis
           Email notifications are not set up yet, so new enquiries are only visible here. Add RESEND_API_KEY or SMTP settings to the server environment.
         </Notice>
       ) : null}
-      {!cloudinaryConfigured() && process.env.NODE_ENV === "production" ? (
-        <Notice tone="warn">Image storage is using the server disk. Set the Cloudinary variables before relying on uploads in production.</Notice>
-      ) : null}
+      
 
       <section aria-label="Figures" className="grid grid-cols-2 gap-4 lg:grid-cols-4">
         {figures.map((f) => (
