@@ -1,0 +1,86 @@
+/* Hallmark · shape: app screens, sidebar and work area · genre: modern-minimal · theme: custom · job: sign up · idea: "A plain, warm back office where the owner can find, change and publish anything in two clicks" · vibe: "quiet ledger for a busy events office"
+ * paper: oklch(98% 0.008 84) · accent: oklch(46% 0.1 56) · display: Hanken Grotesk · body: Hanken Grotesk · hero: none, app screen · nav: left sidebar of sections · footer: none · imagery: the client's project photographs in the project editor · signature: the theme switch with a live preview of the real site
+ * axes: light/grotesk-sans/warm · posture: app · contrast: pass · fold: pass · v2.0.0 */
+/* Hallmark · pre-emit critique: P3 H4 E4 S4 R5 V3 · weakest: V, an admin should look like an admin; plain labels and tables were the point */
+@import "tailwindcss";
+
+@theme {
+  --color-*: initial;
+  --color-bg: oklch(97.5% 0.008 84);
+  --color-panel: oklch(99.5% 0.004 84);
+  --color-sunk: oklch(94.5% 0.012 84);
+  --color-ink: oklch(22% 0.025 60);
+  --color-ink-2: oklch(38% 0.025 60);
+  --color-muted: oklch(48% 0.025 64);
+  --color-line: oklch(88% 0.015 80);
+  --color-line-strong: oklch(62% 0.025 70);
+  --color-accent: oklch(46% 0.1 56);
+  --color-accent-soft: oklch(93% 0.035 70);
+  --color-on-accent: oklch(98% 0.01 84);
+  --color-ok: oklch(42% 0.1 150);
+  --color-ok-soft: oklch(94% 0.04 150);
+  --color-warn: oklch(48% 0.12 75);
+  --color-warn-soft: oklch(94% 0.05 85);
+  --color-bad: oklch(46% 0.17 28);
+  --color-bad-soft: oklch(94% 0.04 28);
+  --color-focus: oklch(46% 0.15 40);
+  --font-sans: var(--font-hanken), "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-gloock), "Gloock", ui-serif, serif;
+}
+
+@layer base {
+  html, body { overflow-x: clip; }
+  body { background: var(--color-bg); color: var(--color-ink); font-family: var(--font-sans); font-size: 15px; line-height: 1.5; }
+  ::selection { background: var(--color-accent-soft); }
+  :focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+  h1, h2, h3 { overflow-wrap: break-word; min-width: 0; }
+}
+
+@layer components {
+  .a-input {
+    width: 100%; min-height: 40px; padding: 8px 12px;
+    border: 1px solid var(--color-line-strong); border-radius: 6px; background: var(--color-panel); color: var(--color-ink);
+    transition: border-color 120ms ease-out;
+  }
+  .a-input:hover { border-color: var(--color-ink-2); }
+  .a-input:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 1px; }
+  .a-input:disabled { opacity: 0.6; cursor: not-allowed; }
+  .a-input[aria-invalid="true"] { border-color: var(--color-bad); }
+  textarea.a-input { min-height: 96px; resize: vertical; }
+  .a-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 40px; padding: 0 16px;
+    border: 1px solid var(--color-ink); border-radius: 6px; background: var(--color-ink); color: var(--color-panel);
+    font-weight: 600; white-space: nowrap; cursor: pointer; text-decoration: none;
+    transition: background-color 120ms ease-out, color 120ms ease-out;
+  }
+  .a-btn:hover { background: var(--color-ink-2); }
+  .a-btn:active { transform: translateY(1px); }
+  .a-btn:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+  .a-btn:disabled { opacity: 0.55; cursor: not-allowed; }
+  .a-btn--quiet { background: var(--color-panel); color: var(--color-ink); border-color: var(--color-line-strong); }
+  .a-btn--quiet:hover { background: var(--color-sunk); }
+  .a-btn--danger { background: var(--color-panel); color: var(--color-bad); border-color: var(--color-bad); }
+  .a-btn--danger:hover { background: var(--color-bad-soft); }
+  .a-btn--sm { min-height: 32px; padding: 0 10px; font-size: 13px; }
+  .a-link { color: var(--color-accent); font-weight: 600; text-decoration: underline; text-underline-offset: 0.2em; }
+  .a-link:hover { text-decoration-thickness: 2px; }
+  .a-card { background: var(--color-panel); border: 1px solid var(--color-line); border-radius: 10px; }
+  .a-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .a-table th { text-align: left; font-weight: 600; color: var(--color-muted); font-size: 13px; padding: 10px 12px; border-bottom: 1px solid var(--color-line); white-space: nowrap; }
+  .a-table td { padding: 12px; border-bottom: 1px solid var(--color-line); vertical-align: top; }
+  .a-table tr:last-child td { border-bottom: 0; }
+  .a-badge { display: inline-flex; align-items: center; min-height: 22px; padding: 0 8px; border-radius: 999px; font-size: 12px; font-weight: 600; white-space: nowrap; background: var(--color-sunk); color: var(--color-ink-2); }
+  .a-badge--ok { background: var(--color-ok-soft); color: var(--color-ok); }
+  .a-badge--warn { background: var(--color-warn-soft); color: var(--color-warn); }
+  .a-badge--bad { background: var(--color-bad-soft); color: var(--color-bad); }
+  .a-badge--accent { background: var(--color-accent-soft); color: var(--color-accent); }
+  .a-logo { display: inline-block; vertical-align: top; aspect-ratio: 1414 / 891; background-color: currentColor; -webkit-mask: url("/brand/meilleur-logo.png") left center / contain no-repeat; mask: url("/brand/meilleur-logo.png") left center / contain no-repeat; }
+  .a-nav a { display: flex; align-items: center; gap: 10px; min-height: 38px; padding: 0 12px; border-radius: 6px; color: var(--color-ink-2); font-weight: 500; text-decoration: none; }
+  .a-nav a:hover { background: var(--color-sunk); color: var(--color-ink); }
+  .a-nav a[aria-current="page"] { background: var(--color-ink); color: var(--color-panel); }
+  .a-nav a:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 1px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}

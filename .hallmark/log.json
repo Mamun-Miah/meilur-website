@@ -1,0 +1,98 @@
+[
+ {
+  "shape": "Floor to opening night",
+  "theme": "custom",
+  "axes": "light/high-contrast-serif/warm",
+  "hero": "drafting grid, self-drawing hall plan, pointer work lamp",
+  "nav": "edge-aligned, compacts and tucks",
+  "footer": "logo mast beside address and tagline",
+  "imagery": "client photos inside the stand model and corridor, not grids",
+  "photos": [],
+  "entry": "src/app/(site)/page.tsx",
+  "fingerprint": "blueprint-hero/floor-plan-tabs/pinned-manifesto/3d-build/statement/corridor+index/form",
+  "sections": [
+   "blueprint hero",
+   "services floor plan",
+   "values manifesto",
+   "3D build sequence",
+   "team",
+   "work corridor and index",
+   "contact"
+  ],
+  "signature": "3D stand set out, framed, clad, rigged and lit by the scroll",
+  "waived": [
+   "65",
+   "42",
+   "23",
+   "29",
+   "80",
+   "81",
+   "72",
+   "39b"
+  ],
+  "prompt": "client says photo album; jaw-dropping design, creative art, ultra creative choreography representing core values",
+  "date": "2026-10-27",
+  "mode": "build"
+ },
+ {
+  "shape": "Hall plan, six sections drawn as stands, with choreography",
+  "theme": "custom",
+  "axes": "light/high-contrast-serif/warm",
+  "hero": "split: headline lines rise, rotating real stands in a plan frame whose dimension line is the timer",
+  "nav": "edge-aligned, compacts and tucks on scroll down",
+  "footer": "logo mast beside address, channels and tagline",
+  "imagery": "client project photographs",
+  "photos": [],
+  "entry": "src/app/(site)/page.tsx",
+  "fingerprint": "exhibit-hero/numbered-catalogue/pinned-process/statement-or-portraits/filtered-portfolio/project-ribbon/form-with-channels",
+  "sections": [
+   "hero",
+   "services",
+   "about with pinned process",
+   "team",
+   "work",
+   "project ribbon",
+   "contact"
+  ],
+  "signature": "stand-plan frame cycling real stands, timed by its own dimension line",
+  "waived": [
+   "65",
+   "42",
+   "39b",
+   "23"
+  ],
+  "prompt": "add wow factor, award winning design and animation, choreography",
+  "date": "2026-10-26",
+  "mode": "build"
+ },
+ {
+  "shape": "Hall plan, six sections drawn as stands",
+  "theme": "custom",
+  "axes": "light/high-contrast-serif/warm",
+  "hero": "split: head left, TEXTECH 2025 stand in a drawn dimension frame",
+  "nav": "edge-aligned wordmark, six anchors, one action, compacting",
+  "footer": "logo mast beside address, channels and tagline",
+  "imagery": "client project photographs from the business profile",
+  "photos": [],
+  "entry": "src/app/(site)/page.tsx",
+  "fingerprint": "split-hero/numbered-catalogue/statement+process-plan/statement-or-portraits/filtered-portfolio/form-with-channels",
+  "sections": [
+   "hero",
+   "services catalogue",
+   "about with process plan",
+   "team",
+   "work gallery",
+   "contact form"
+  ],
+  "signature": "real TEXTECH 2025 stand inside a drawn stand-plan frame",
+  "waived": [
+   "65",
+   "42",
+   "39b",
+   "23"
+  ],
+  "prompt": "MEILLEUR event and exhibition website with admin panel, two themes",
+  "date": "2026-10-26",
+  "mode": "build"
+ }
+]

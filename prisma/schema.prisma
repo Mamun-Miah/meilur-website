@@ -1,0 +1,203 @@
+// MEILLEUR — content and lead-management schema.
+// Local development runs on SQLite. For production, switch `provider` to
+// "postgresql", point DATABASE_URL at the Postgres instance and run
+// `npx prisma migrate deploy` (see docs/DEPLOYMENT.md). The schema only uses
+// types both providers support, so no model changes are needed.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  name         String
+  passwordHash String
+  /// "ADMIN" | "EDITOR"
+  role         String    @default("EDITOR")
+  active       Boolean   @default(true)
+  lastLoginAt  DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  sessions          Session[]
+  resetTokens       PasswordResetToken[]
+  assignedEnquiries Enquiry[]            @relation("EnquiryAssignee")
+  enquiryNotes      EnquiryNote[]
+  activity          ActivityLog[]
+}
+
+model Session {
+  id         String   @id @default(cuid())
+  /// SHA-256 of the cookie token; the raw token never touches the database.
+  tokenHash  String   @unique
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt  DateTime
+  lastSeenAt DateTime @default(now())
+  userAgent  String?
+  createdAt  DateTime @default(now())
+
+  @@index([userId])
+}
+
+model PasswordResetToken {
+  id        String    @id @default(cuid())
+  tokenHash String    @unique
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  @@index([userId])
+}
+
+/// One row (id = 1). `data` is JSON validated by src/lib/settings.ts.
+model SiteSettings {
+  id        Int      @id @default(1)
+  /// "heritage" | "exhibition"
+  theme     String   @default("heritage")
+  data      String
+  updatedAt DateTime @updatedAt
+  updatedBy String?
+}
+
+model Service {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  summary     String
+  imageUrl    String?
+  imageAlt    String?
+  featured    Boolean  @default(false)
+  published   Boolean  @default(true)
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([published, sortOrder])
+}
+
+model TeamMember {
+  id          String   @id @default(cuid())
+  name        String
+  jobTitle    String
+  bio         String   @default("")
+  photoUrl    String?
+  photoAlt    String?
+  linkedinUrl String?
+  published   Boolean  @default(false)
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([published, sortOrder])
+}
+
+model Project {
+  id           String         @id @default(cuid())
+  title        String
+  slug         String         @unique
+  /// Free text so "Summer 2024" survives; null when the source gives no year.
+  year         String?
+  category     String
+  description  String         @default("")
+  client       String?
+  location     String?
+  /// "DRAFT" | "PUBLISHED" | "ARCHIVED"
+  status       String         @default("DRAFT")
+  featured     Boolean        @default(false)
+  sortOrder    Int            @default(0)
+  coverImageId String?
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  images       ProjectImage[]
+
+  @@index([status, sortOrder])
+}
+
+model ProjectImage {
+  id         String   @id @default(cuid())
+  projectId  String
+  project    Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  url        String
+  /// Provider key used to delete the file (Cloudinary public_id or local path).
+  storageKey String?
+  width      Int
+  height     Int
+  alt        String   @default("")
+  caption    String   @default("")
+  /// "PUBLISHED" | "ARCHIVED"
+  status     String   @default("PUBLISHED")
+  sortOrder  Int      @default(0)
+  createdAt  DateTime @default(now())
+
+  @@index([projectId, sortOrder])
+}
+
+model Enquiry {
+  id         String        @id @default(cuid())
+  name       String
+  email      String
+  phone      String
+  eventType  String
+  eventDate  String?
+  venue      String
+  scale      String?
+  message    String
+  /// "NEW" | "CONTACTED" | "IN_DISCUSSION" | "WON" | "LOST"
+  status     String        @default("NEW")
+  assigneeId String?
+  assignee   User?         @relation("EnquiryAssignee", fields: [assigneeId], references: [id], onDelete: SetNull)
+  /// Hash of email + message, used to reject duplicate submissions.
+  dedupeHash String
+  /// Delivery state of the notification email: "SENT" | "FAILED" | "SKIPPED"
+  notifyState String       @default("SKIPPED")
+  userAgent  String?
+  createdAt  DateTime      @default(now())
+  updatedAt  DateTime      @updatedAt
+  notes      EnquiryNote[]
+
+  @@index([status, createdAt])
+  @@index([dedupeHash, createdAt])
+  @@index([assigneeId])
+}
+
+model EnquiryNote {
+  id        String   @id @default(cuid())
+  enquiryId String
+  enquiry   Enquiry  @relation(fields: [enquiryId], references: [id], onDelete: Cascade)
+  authorId  String?
+  author    User?    @relation(fields: [authorId], references: [id], onDelete: SetNull)
+  body      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([enquiryId])
+}
+
+model ActivityLog {
+  id        String   @id @default(cuid())
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  action    String
+  entity    String
+  entityId  String?
+  summary   String
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+}
+
+/// Fixed-window counters shared by every server instance.
+model RateLimit {
+  key     String   @id
+  count   Int
+  resetAt DateTime
+}

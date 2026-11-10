@@ -1,0 +1,166 @@
+/* Design tokens. Every colour and face on the public site resolves here.
+ * Heritage (default) samples the business profile's parchment (#d8c090 to
+ * #e8d0a0) and the logo's ink; Exhibition takes the red carpet, white booth
+ * walls and dark hall ceilings of the profile's expo photographs. */
+:root {
+  --space-3xs: 2px; --space-2xs: 4px; --space-xs: 8px; --space-sm: 12px; --space-md: 16px; --space-lg: 24px; --space-xl: 40px; --space-2xl: 64px; --space-3xl: 96px; --space-4xl: 144px;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1); --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro: 120ms; --dur-short: 220ms; --dur-long: 700ms;
+  --container: 1440px; --gutter: 64px; --gap-columns: 32px; --section-gap-s: 120px; --section-gap: 152px; --section-gap-l: 184px;
+  --z-base: 1; --z-raised: 10; --z-sticky-nav: 300; --z-float: 350; --z-modal: 400; --z-tooltip: 600;
+  --nav-height: 76px;
+}
+
+:root,
+[data-theme="heritage"] {
+  --text-xs: 0.8125rem; --text-sm: 0.875rem; --text-md: 1.0625rem; --text-lg: 1.25rem; --text-xl: 1.5625rem; --text-2xl: 1.953rem; --text-3xl: 2.441rem;
+  --text-display: clamp(2.75rem, 3.6vw + 1rem, 5.125rem);
+  --text-section: clamp(2.25rem, 2.6vw + 1rem, 4rem);
+  --text-title: clamp(1.375rem, 0.8vw + 1rem, 1.875rem);
+  --text-lead: clamp(1.125rem, 0.4vw + 1rem, 1.375rem);
+  --text-statement: clamp(1.625rem, 1.6vw + 1rem, 2.625rem);
+  --leading-display: 1.04; --tracking-display: -0.015em; --display-case: none; --display-weight: 400;
+
+  --color-paper: oklch(94% 0.03 84);
+  --color-paper-2: oklch(89.5% 0.05 83);
+  --color-paper-3: oklch(84.5% 0.068 81);
+  --color-ink: oklch(22% 0.025 60);
+  --color-ink-2: oklch(32% 0.03 60);
+  --color-muted: oklch(43% 0.035 64);
+  --color-rule: oklch(22% 0.025 60 / 0.26);
+  --color-rule-strong: oklch(22% 0.025 60 / 0.7);
+  --color-accent: oklch(46% 0.1 56);
+  --color-accent-ink: oklch(96% 0.02 84);
+  --color-focus: oklch(40% 0.14 38);
+  --color-error: oklch(42% 0.16 28);
+  --color-success: oklch(42% 0.1 150);
+  --color-scrim: oklch(16% 0.02 60 / 0.92);
+  --color-on-scrim: oklch(95% 0.02 84);
+  --color-night: oklch(22% 0.025 60);
+  --color-on-night: oklch(93% 0.03 84);
+  --color-on-night-muted: oklch(80% 0.04 80);
+  --color-signal: oklch(78% 0.11 74);
+  --color-signal-ink: oklch(22% 0.025 60);
+
+  --font-display: var(--font-gloock), "Gloock", ui-serif, Georgia, serif;
+  --font-body: var(--font-hanken), "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-outlier: var(--font-body);
+
+  --wipe-from: inset(100% 0 0 0);
+  --text-hero: clamp(3rem, 4.8vw + 0.6rem, 6.75rem);
+  --text-giant: clamp(3rem, 8vw + 0.5rem, 10rem);
+
+  /* Drafting table: the grid, the plan's ink and the work lamp. */
+  --grid-line: oklch(22% 0.025 60 / 0.09);
+  --grid-line-soft: oklch(22% 0.025 60 / 0.045);
+  --grid-line-strong: oklch(46% 0.1 56 / 0.5);
+  --plan-ink: oklch(22% 0.025 60);
+  --plan-ink-soft: oklch(22% 0.025 60 / 0.55);
+  --plan-fill: oklch(89.5% 0.05 83 / 0.7);
+  --plan-fill-2: oklch(84.5% 0.068 81);
+  --lamp: oklch(99% 0.03 90 / 0.75);
+
+  /* The stand model, built in the build sequence (drawn on the ink surface). */
+  --model-line: oklch(93% 0.03 84);
+  --model-line-soft: oklch(93% 0.03 84 / 0.35);
+  --model-floor: oklch(46% 0.1 56);
+  --model-wall: oklch(94% 0.03 84);
+  --model-wall-side: oklch(84.5% 0.068 81);
+  --model-counter: oklch(89.5% 0.05 83);
+  --model-counter-side: oklch(78% 0.07 78);
+  --model-counter-top: oklch(97% 0.02 84);
+  --model-fascia: oklch(22% 0.025 60);
+  --model-fascia-ink: oklch(94% 0.03 84);
+  --model-truss: oklch(80% 0.04 80);
+  /* The hero photograph, toned into the logo ink so the letters read as lettering, not a collage. */
+  --wm-tone: grayscale(1) contrast(1.25) brightness(0.62);
+  --wm-wash: oklch(52% 0.09 58);
+  --model-plinth: oklch(30% 0.05 55);
+  --model-trim: oklch(78% 0.11 74);
+  --model-cap: oklch(97% 0.02 84);
+  --model-totem-side: oklch(16% 0.02 60);
+  --model-shadow: oklch(12% 0.02 60 / 0.6);
+  --light: oklch(92% 0.14 85 / 0.85);
+  --light-soft: oklch(80% 0.12 75 / 0.32);
+  --radius-control: 2px; --radius-card: 0px; --rule-hair: 1px; --shadow-lift: 0 18px 40px -24px oklch(22% 0.025 60 / 0.45);
+  --texture: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .2 0 0 0 0 .14 0 0 0 0 .08 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+[data-theme="exhibition"] {
+  --text-display: clamp(3rem, 4.4vw + 1rem, 6.25rem);
+  --text-section: clamp(2.75rem, 4vw + 1rem, 5.75rem);
+  --text-title: clamp(1.5rem, 1vw + 1rem, 2.125rem);
+  --text-statement: clamp(1.75rem, 2vw + 1rem, 3rem);
+  --leading-display: 1; --tracking-display: 0; --display-case: uppercase; --display-weight: 700;
+  --dur-long: 520ms;
+
+  --color-paper: oklch(97.5% 0.006 95);
+  --color-paper-2: oklch(93.5% 0.008 95);
+  --color-paper-3: oklch(89% 0.01 95);
+  --color-ink: oklch(19% 0.03 262);
+  --color-ink-2: oklch(28% 0.035 262);
+  --color-muted: oklch(43% 0.025 262);
+  --color-rule: oklch(19% 0.03 262 / 0.2);
+  --color-rule-strong: oklch(19% 0.03 262 / 0.85);
+  --color-accent: oklch(53% 0.2 27);
+  --color-accent-ink: oklch(98.5% 0.006 95);
+  --color-focus: oklch(53% 0.2 27);
+  --color-error: oklch(50% 0.2 27);
+  --color-success: oklch(45% 0.12 150);
+  --color-scrim: oklch(14% 0.03 262 / 0.95);
+  --color-on-scrim: oklch(97% 0.006 95);
+  --color-night: oklch(19% 0.03 262);
+  --color-on-night: oklch(97% 0.006 95);
+  --color-on-night-muted: oklch(78% 0.02 262);
+  --color-signal: oklch(87% 0.16 92);
+  --color-signal-ink: oklch(19% 0.03 262);
+
+  --font-display: var(--font-antonio), "Antonio", "Arial Narrow", sans-serif;
+
+  --wipe-from: inset(0 100% 0 0);
+  --text-hero: clamp(3.25rem, 5.6vw + 0.5rem, 8rem);
+  --text-giant: clamp(3.25rem, 9.5vw, 12rem);
+
+  --grid-line: oklch(97% 0.006 95 / 0.07);
+  --grid-line-soft: oklch(97% 0.006 95 / 0.035);
+  --grid-line-strong: oklch(87% 0.16 92 / 0.55);
+  --plan-ink: oklch(97% 0.006 95);
+  --plan-ink-soft: oklch(97% 0.006 95 / 0.5);
+  --plan-fill: oklch(28% 0.035 262 / 0.85);
+  --plan-fill-2: oklch(34% 0.04 262);
+  --lamp: oklch(87% 0.16 92 / 0.16);
+
+  --model-line: oklch(97% 0.006 95);
+  --model-line-soft: oklch(97% 0.006 95 / 0.3);
+  --model-floor: oklch(53% 0.2 27);
+  --model-wall: oklch(97.5% 0.006 95);
+  --model-wall-side: oklch(89% 0.01 95);
+  --model-counter: oklch(97.5% 0.006 95);
+  --model-counter-side: oklch(84% 0.01 95);
+  --model-counter-top: oklch(19% 0.03 262);
+  --model-fascia: oklch(53% 0.2 27);
+  --model-fascia-ink: oklch(98.5% 0.006 95);
+  --model-truss: oklch(70% 0.02 262);
+  --wm-tone: saturate(1.25) contrast(1.1) brightness(0.92);
+  --wm-wash: oklch(97% 0.006 95 / 0);
+  --model-plinth: oklch(26% 0.035 262);
+  --model-trim: oklch(97.5% 0.006 95);
+  --model-cap: oklch(84% 0.01 95);
+  --model-totem-side: oklch(42% 0.17 27);
+  --model-shadow: oklch(10% 0.03 262 / 0.6);
+  --light: oklch(92% 0.15 92 / 0.9);
+  --light-soft: oklch(87% 0.16 92 / 0.25);
+  --radius-control: 0px; --shadow-lift: 0 24px 48px -28px oklch(14% 0.03 262 / 0.6);
+  --texture: none;
+}
+
+/* Surfaces: a section names its surface; the theme decides what it looks like. */
+[data-surface] { background-color: var(--bg); color: var(--fg); }
+[data-surface="paper"] { --bg: var(--color-paper); --fg: var(--color-ink); --fg-muted: var(--color-muted); --line: var(--color-rule); --line-strong: var(--color-rule-strong); --btn-bg: var(--color-ink); --btn-fg: var(--color-paper); --link: var(--color-accent); --focus: var(--color-focus); }
+[data-surface="paper-2"] { --bg: var(--color-paper-2); --fg: var(--color-ink); --fg-muted: var(--color-muted); --line: var(--color-rule); --line-strong: var(--color-rule-strong); --btn-bg: var(--color-ink); --btn-fg: var(--color-paper); --link: var(--color-accent); --focus: var(--color-focus); }
+[data-surface="paper-3"] { --bg: var(--color-paper-3); --fg: var(--color-ink); --fg-muted: var(--color-ink-2); --line: var(--color-rule); --line-strong: var(--color-rule-strong); --btn-bg: var(--color-ink); --btn-fg: var(--color-paper); --link: var(--color-ink); --focus: var(--color-focus); }
+[data-surface="night"] { --bg: var(--color-night); --fg: var(--color-on-night); --fg-muted: var(--color-on-night-muted); --line: color-mix(in oklab, var(--color-on-night) 24%, transparent); --line-strong: color-mix(in oklab, var(--color-on-night) 70%, transparent); --btn-bg: var(--color-signal); --btn-fg: var(--color-signal-ink); --link: var(--color-signal); --focus: var(--color-signal); }
+[data-surface="accent"] { --bg: var(--color-accent); --fg: var(--color-accent-ink); --fg-muted: color-mix(in oklab, var(--color-accent-ink) 86%, var(--color-accent)); --line: color-mix(in oklab, var(--color-accent-ink) 34%, transparent); --line-strong: var(--color-accent-ink); --btn-bg: var(--color-accent-ink); --btn-fg: var(--color-ink); --link: var(--color-accent-ink); --focus: var(--color-accent-ink); }
+[data-theme="exhibition"] [data-surface="paper"],
+[data-theme="exhibition"] [data-surface="paper-2"],
+[data-theme="exhibition"] [data-surface="paper-3"] { --btn-bg: var(--color-accent); --btn-fg: var(--color-accent-ink); }
